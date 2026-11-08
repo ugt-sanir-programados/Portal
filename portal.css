@@ -1,0 +1,44 @@
+:root{--portal-plum:#40132d;--portal-pink:#9e174a;--portal-paper:#fff8f2}
+body{background:var(--portal-paper);background-image:radial-gradient(#f0d7cb 1px,transparent 1px);background-size:21px 21px}
+.topline{background:linear-gradient(90deg,#a91143 0 35%,#f47a85 35% 62%,#f9be64 62% 80%,#b3cb6f 80%)}
+.navshell{background:#fff8f3;box-shadow:0 4px 14px #47112a0b}
+.navlinks a.active{color:#8d1543;background:#fbe4ec;border-radius:999px}
+.pilot{align-items:center;gap:10px;flex-wrap:wrap}
+.shift-tag{display:inline-flex;align-items:center;gap:8px;color:#632b46;font-weight:750}
+.shift-tag i{background:#6d8f28;width:9px;height:9px;border-radius:50%;box-shadow:0 0 0 4px #e5edcb}
+.install-trigger{border:1px solid #d59cb5;background:#fff1f6;color:#7c1643;border-radius:999px;font-weight:800;padding:9px 14px}
+.hero{position:relative;isolation:isolate;background:radial-gradient(circle at 77% 12%,#b54879,transparent 43%),linear-gradient(126deg,#42152f 3%,#851b51 68%,#6a1b52);border-radius:30px;box-shadow:0 16px 36px #6f2c4729}
+.hero::after{content:"";position:absolute;z-index:-1;right:-65px;top:-145px;width:350px;aspect-ratio:1;border:1px dashed #ffc1d780;border-radius:50%;box-shadow:0 0 0 22px #faddf31a,0 0 0 54px #faddf315;pointer-events:none}
+.hero-text{position:relative}
+.hero-spark{position:absolute;right:8%;top:8%;color:#ffd28b;font-size:clamp(24px,5vw,62px);line-height:1;pointer-events:none;animation:spark-in .7s ease-out both}
+@keyframes spark-in{from{opacity:0;transform:scale(.45) rotate(-35deg)}to{opacity:1;transform:scale(1) rotate(9deg)}}
+.hero h1 em{color:#ffce82}
+.hero .hero-strip{background:#ffd890;color:#46192e}
+.hero .hero-strip span{color:#583039}
+.hero .btn{background:#ffcf83;color:#41152b}
+.hero .rail-card{border-radius:15px}
+.hero .rail-card:hover{background:#ffffff2b}
+.appdeck{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:0 0 24px}
+.appcard{display:flex;min-width:0;flex-direction:column;gap:8px;min-height:174px;padding:17px;border:1px solid #54254122;border-radius:23px;background:var(--tile);color:var(--portal-plum);text-decoration:none;box-shadow:0 4px 0 #54254120;transition:transform .18s ease,box-shadow .18s ease}
+.appcard:hover,.appcard:focus-visible{transform:translateY(-4px);box-shadow:0 8px 0 #54254125}
+.appcard-top{display:flex;align-items:center;justify-content:space-between;gap:4px;margin-bottom:5px}
+.appsymbol{display:grid;place-items:center;width:42px;height:42px;background:#fff9;border-radius:13px;font-size:25px;font-weight:900}
+.app-arrow{font-size:19px;font-weight:800}
+.appcard small{font-weight:800;font-size:11px;letter-spacing:.065em;text-transform:uppercase}
+.appcard strong{font-size:clamp(17px,1.65vw,23px);line-height:1.08}
+.appcard>span:last-child{font-size:13px;line-height:1.45}
+.rosa{--tile:#ffd6e1}.lima{--tile:#e6efb9}.lavanda{--tile:#eadcff}.azul{--tile:#d9edff}.melocoton{--tile:#ffdfba}
+.pageintro{background:linear-gradient(115deg,#fce2ec,#ffedcd);border-radius:27px;padding-inline:clamp(18px,4vw,40px);color:var(--portal-plum)}
+.forum-banner{display:flex;align-items:center;gap:24px;background:#ece3ff;border-color:#ddc9ff}
+.forum-banner h2{font-size:clamp(25px,4vw,38px);margin:10px 0}
+.forum-symbol{display:grid;place-items:center;flex:none;width:90px;aspect-ratio:1;border-radius:26px;background:#673991;color:white;font-size:51px;transform:rotate(-8deg)}
+.forum-topics{margin-top:18px}
+#replyField label{display:block;margin-bottom:8px}
+#replyEmail{width:100%;border:1px solid #c6acba;border-radius:10px;padding:12px;font:inherit}
+.mus-feature{min-height:260px;align-items:flex-start}
+.mus-feature .btn{background:#ffd890;color:#33212b}
+.playing-tile{display:grid;place-items:center;width:88px;height:108px;border-radius:16px;background:#e6f4d1;color:#2e553c;font-size:49px;transform:rotate(-12deg);box-shadow:0 6px 14px #0003}
+#installDialog p{line-height:1.6}
+@media(max-width:900px){.appdeck{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.appdeck{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.appcard{padding:13px}.appcard:last-child:nth-child(odd){grid-column:1/-1;min-height:140px}.hero-spark{right:5%;top:1%}.pilot>span:last-child{display:none}.forum-banner{align-items:flex-start;gap:14px}.forum-symbol{width:48px;border-radius:13px;font-size:26px}.forum-banner .links{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){.hero-spark{animation:none}.appcard{transition:none}.appcard:hover,.appcard:focus-visible{transform:none}}
