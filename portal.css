@@ -42,3 +42,9 @@ body{background:var(--portal-paper);background-image:radial-gradient(#f0d7cb 1px
 @media(max-width:900px){.appdeck{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:560px){.appdeck{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.appcard{padding:13px}.appcard:last-child:nth-child(odd){grid-column:1/-1;min-height:140px}.hero-spark{right:5%;top:1%}.pilot>span:last-child{display:none}}
 @media(prefers-reduced-motion:reduce){.hero-spark{animation:none}.appcard{transition:none}.appcard:hover,.appcard:focus-visible{transform:none}}
+
+.hero .rail-card{grid-template-columns:minmax(0,1fr) 22px}
+.turno-title{display:flex;align-items:center;gap:clamp(12px,2vw,26px)}
+.turno-ambulancia{display:block;flex:0 1 42%;width:42%;min-width:0;height:auto;padding:7px;background:#fff;border:3px solid #ffd183;border-radius:18px;transform:rotate(-7deg);box-shadow:0 10px 26px #17061850}
+.convenio-reader{display:block;width:100%;height:clamp(470px,80vh,1050px);border:1px solid #e6d9dd;border-radius:16px;background:#fff}
+@media(max-width:520px){.turno-title{flex-wrap:wrap;gap:0}.turno-ambulancia{width:min(65%,215px);flex-basis:min(65%,215px);margin:0 0 20px 7px}.convenio-reader{height:78dvh;min-height:420px}}
