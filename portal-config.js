@@ -1,6 +1,5 @@
 window.UGT_PORTAL = {
-  // Ejemplo de formato: 'organizacion/repositorio'
-  discussionsRepo: '',
-  // Endpoint público de un formulario ya creado: 'https://formspree.io/f/ID'
-  contactEndpoint: '',
+  // Endpoint público de un formulario ya creado: 'https://script.google.com/macros/s/ID/exec'
+  contactEndpoint: 'https://script.google.com/macros/s/AKfycbwB5PLFLLKSF33Eh96ZBc7S2Y-nAqVJYvaOyYrkuRcK5zoJ9Uc9jTmSTOOJuoOXEp9uwg/exec',
+  contactRecipients: ['comitesanir@gmail.com', 'delegadosprevencion.sanir@gmail.com'],
 };

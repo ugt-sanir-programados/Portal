@@ -1,69 +1,59 @@
 (() => {
   const config = window.UGT_PORTAL || {};
   const byId = id => document.getElementById(id);
-  const repo = config.discussionsRepo || '';
-  if (/^[\w-]+\/[\w.-]+$/.test(repo)) {
-    const forumUrl = 'https://github.com/' + repo + '/discussions';
-    byId('forumMode').textContent = 'Foro en GitHub';
-    byId('forumNote').textContent = 'Puedes leer el foro público. Para publicar o responder, inicia sesión con tu cuenta de GitHub.';
-    byId('forumOpen').href = forumUrl;
-    byId('forumNew').href = forumUrl + '/new/choose';
-    byId('forumOpen').hidden = false;
-    byId('forumNew').hidden = false;
-  }
-
-  const endpoint = /^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(config.contactEndpoint || '') ? config.contactEndpoint : '';
+  const endpoint = /^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(config.contactEndpoint || '') ? config.contactEndpoint : '';
   const form = byId('draftForm');
   const status = byId('draftState');
   const send = byId('contactSubmit');
+  const recipients = config.contactRecipients || [];
   send.disabled = false;
+  if (!endpoint && recipients.length) {
+    byId('contactMode').textContent = 'Envío por correo';
+    byId('contactNote').textContent = 'El mensaje se abrirá en tu aplicación de correo. Revísalo y pulsa Enviar allí. Evita incluir datos de pacientes o información sensible.';
+    byId('contactAside').textContent = 'Tu mensaje se dirigirá al comité y a los delegados de prevención.';
+    send.textContent = 'Abrir mi correo';
+  }
   if (endpoint) {
+    form.action = endpoint;
+    form.method = 'post';
     byId('contactMode').textContent = 'Buzón de la sección sindical';
     byId('replyField').hidden = false;
     byId('replyEmail').disabled = false;
     byId('replyEmail').required = true;
-    byId('contactNote').textContent = 'Tu mensaje y tu correo se tramitan mediante Formspree para que pueda responderte la sección sindical. Evita incluir datos de pacientes o información sensible.';
+    byId('contactNote').textContent = 'Tu mensaje y tu correo se tramitan mediante Google Apps Script para que pueda responderte la sección sindical. Evita incluir datos de pacientes o información sensible.';
     byId('contactAside').textContent = 'Usaremos el correo que indiques para responder a tu consulta.';
     send.textContent = 'Enviar mensaje';
   }
 
   form.addEventListener('submit', async event => {
-    event.preventDefault();
     const message = byId('message');
     if (!message.value.trim()) {
+      event.preventDefault();
       status.textContent = 'Escribe un mensaje antes de continuar.';
       message.focus();
       return;
     }
-    if (!endpoint) {
-      const draft = byId('kind').value + ' · ' + byId('topic').value + '\n\n' + message.value.trim();
-      try {
-        await navigator.clipboard.writeText(draft);
-        status.textContent = 'Borrador copiado. Puedes pegarlo donde quieras.';
-      } catch {
-        message.focus();
-        message.select();
-        status.textContent = 'Mensaje seleccionado. Usa la opción Copiar de tu dispositivo.';
-      }
+    if (endpoint) {
+      status.textContent = 'Enviando… Google mostrará el resultado.';
       return;
     }
-    if (send.disabled) return;
-    send.disabled = true;
-    status.textContent = 'Enviando…';
+    event.preventDefault();
+    if (recipients.length) {
+      const subject = byId('kind').value + ' · ' + byId('topic').value;
+      const body = message.value.trim().replace(/\r?\n/g, '\r\n');
+      status.textContent = 'Revisa el borrador en tu aplicación de correo y pulsa Enviar.';
+      window.location.href = 'mailto:' + recipients.join(',') +
+        '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      return;
+    }
+    const draft = byId('kind').value + ' · ' + byId('topic').value + '\n\n' + message.value.trim();
     try {
-      const result = await fetch(endpoint, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: {Accept: 'application/json'},
-        signal: AbortSignal.timeout(15000),
-      });
-      if (!result.ok) throw new Error('Form submission failed');
-      form.reset();
-      status.textContent = 'Mensaje enviado al buzón.';
+      await navigator.clipboard.writeText(draft);
+      status.textContent = 'Borrador copiado. Puedes pegarlo donde quieras.';
     } catch {
-      status.textContent = 'No se pudo confirmar el envío. Tu mensaje sigue aquí.';
-    } finally {
-      send.disabled = false;
+      message.focus();
+      message.select();
+      status.textContent = 'Mensaje seleccionado. Usa la opción Copiar de tu dispositivo.';
     }
   });
 

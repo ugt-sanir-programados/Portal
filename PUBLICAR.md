@@ -4,22 +4,14 @@
 
 1. Abre el repositorio del portal y entra en **Settings → Pages** para ver qué rama y carpeta sirven la web.
 2. Sube juntos `index.html`, `portal.css`, `portal.js`, `portal-config.js`, `manifest.webmanifest`, `sw.js` y los tres iconos PNG a esa carpeta. Si el repositorio ya tiene un `index.html`, este es su reemplazo.
-3. Abre la URL HTTPS de Pages y pulsa **Instalar portal**. La primera visita necesita conexión. Los lectores integrados pueden abrirse sin conexión después de que el navegador complete la carga inicial. Las aplicaciones externas, el foro y el buzón necesitan Internet.
+3. Abre la URL HTTPS de Pages y pulsa **Instalar portal**. La primera visita necesita conexión. Los lectores integrados pueden abrirse sin conexión después de que el navegador complete la carga inicial. Las aplicaciones externas, el buzón necesitan Internet.
 
-## Activar el foro
+## Comprobar el envío desde la web
 
-En el repositorio que vaya a alojar las conversaciones, entra en **Settings → General → Features** y activa **Discussions**. En un repositorio público, los debates serán públicos y para participar se necesita una cuenta de GitHub.
+El formulario está conectado a la implementación de Google Apps Script en `portal-config.js`. El script recibe los campos `email`, `mensaje`, `tipo` y `tema` y envía a los buzones del comité y de Prevención.
 
-En `portal-config.js`, rellena `discussionsRepo` con el nombre exacto `organizacion/repositorio`. Publica el cambio y comprueba que abren **Ver conversaciones** y **Abrir un tema**.
+1. Comprueba en una ventana de incógnito que la URL de la aplicación web termina en `/exec` y muestra «Buzón UGT Sanir disponible».
+2. Desde el portal publicado, abre **Contacto**, pon un correo válido y escribe un mensaje identificado como prueba.
+3. Pulsa **Enviar mensaje**. Google mostrará el resultado del script. Comprueba la recepción en ambos buzones y usa el botón Atrás del navegador para volver al portal.
 
-[Guía de GitHub Discussions](https://docs.github.com/es/discussions/quickstart)
-
-## Activar el buzón
-
-1. Crea un formulario en Formspree con el buzón que deba recibir las consultas. Si varios delegados deben recibirlas, puede usarse un buzón de grupo o configurar los destinatarios en el servicio según el plan disponible.
-2. Copia la URL pública `https://formspree.io/f/ID` a `contactEndpoint` en `portal-config.js`. Los correos de destino se configuran en el servicio.
-3. Publica el cambio y envía una consulta de prueba. Comprueba que llega a los destinatarios y que se puede responder al correo introducido en el formulario.
-
-Mientras falte esa URL, el formulario permite copiar un borrador. El envío activado usa Formspree para tramitar los datos introducidos en el formulario.
-
-[Documentación de Formspree](https://help.formspree.io/)
+Si cambias la implementación, actualiza `contactEndpoint` con la nueva URL y vuelve a publicar. Si dejas el campo vacío, el portal prepara un borrador en la aplicación de correo del usuario.

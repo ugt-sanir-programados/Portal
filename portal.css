@@ -29,10 +29,10 @@ body{background:var(--portal-paper);background-image:radial-gradient(#f0d7cb 1px
 .appcard>span:last-child{font-size:13px;line-height:1.45}
 .rosa{--tile:#ffd6e1}.lima{--tile:#e6efb9}.lavanda{--tile:#eadcff}.azul{--tile:#d9edff}.melocoton{--tile:#ffdfba}
 .pageintro{background:linear-gradient(115deg,#fce2ec,#ffedcd);border-radius:27px;padding-inline:clamp(18px,4vw,40px);color:var(--portal-plum)}
-.forum-banner{display:flex;align-items:center;gap:24px;background:#ece3ff;border-color:#ddc9ff}
-.forum-banner h2{font-size:clamp(25px,4vw,38px);margin:10px 0}
-.forum-symbol{display:grid;place-items:center;flex:none;width:90px;aspect-ratio:1;border-radius:26px;background:#673991;color:white;font-size:51px;transform:rotate(-8deg)}
-.forum-topics{margin-top:18px}
+
+
+
+
 #replyField label{display:block;margin-bottom:8px}
 #replyEmail{width:100%;border:1px solid #c6acba;border-radius:10px;padding:12px;font:inherit}
 .mus-feature{min-height:260px;align-items:flex-start}
@@ -40,5 +40,5 @@ body{background:var(--portal-paper);background-image:radial-gradient(#f0d7cb 1px
 .playing-tile{display:grid;place-items:center;width:88px;height:108px;border-radius:16px;background:#e6f4d1;color:#2e553c;font-size:49px;transform:rotate(-12deg);box-shadow:0 6px 14px #0003}
 #installDialog p{line-height:1.6}
 @media(max-width:900px){.appdeck{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:560px){.appdeck{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.appcard{padding:13px}.appcard:last-child:nth-child(odd){grid-column:1/-1;min-height:140px}.hero-spark{right:5%;top:1%}.pilot>span:last-child{display:none}.forum-banner{align-items:flex-start;gap:14px}.forum-symbol{width:48px;border-radius:13px;font-size:26px}.forum-banner .links{flex-wrap:wrap}}
+@media(max-width:560px){.appdeck{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.appcard{padding:13px}.appcard:last-child:nth-child(odd){grid-column:1/-1;min-height:140px}.hero-spark{right:5%;top:1%}.pilot>span:last-child{display:none}}
 @media(prefers-reduced-motion:reduce){.hero-spark{animation:none}.appcard{transition:none}.appcard:hover,.appcard:focus-visible{transform:none}}
