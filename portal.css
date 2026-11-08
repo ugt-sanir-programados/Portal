@@ -45,6 +45,11 @@ body{background:var(--portal-paper);background-image:radial-gradient(#f0d7cb 1px
 
 .hero .rail-card{grid-template-columns:minmax(0,1fr) 22px}
 .turno-title{display:flex;align-items:center;gap:clamp(12px,2vw,26px)}
-.turno-ambulancia{display:block;flex:0 1 42%;width:42%;min-width:0;height:auto;padding:7px;background:#fff;border:3px solid #ffd183;border-radius:18px;transform:rotate(-7deg);box-shadow:0 10px 26px #17061850}
+
 .convenio-reader{display:block;width:100%;height:clamp(470px,80vh,1050px);border:1px solid #e6d9dd;border-radius:16px;background:#fff}
-@media(max-width:520px){.turno-title{flex-wrap:wrap;gap:0}.turno-ambulancia{width:min(65%,215px);flex-basis:min(65%,215px);margin:0 0 20px 7px}.convenio-reader{height:78dvh;min-height:420px}}
+@media(max-width:520px){.turno-title{flex-wrap:wrap;gap:0}.convenio-reader{height:78dvh;min-height:420px}}
+
+.turno-carretera{position:relative;isolation:isolate;flex:1 1 46%;min-width:0;max-width:295px;padding-bottom:6%}
+.turno-asfalto{position:absolute;z-index:-1;left:-7%;bottom:0;width:114%;height:57%;overflow:visible}
+.turno-ambulancia{display:block;width:100%;height:auto;filter:drop-shadow(0 5px 3px #180e2f99)}
+@media(max-width:520px){.turno-carretera{flex-basis:min(80%,275px);margin:0 0 19px}}
