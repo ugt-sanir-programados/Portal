@@ -1,7 +1,7 @@
 const root = self.registration.scope;
 const prefix = 'ugt-sanir-portal:' + root + ':';
-const cacheName = prefix + 'v8';
-const files = ['index.html', 'portal.css', 'ambulancia.png', 'portal.js', 'manifest.webmanifest', 'icon-180.png', 'icon-192.png', 'icon-512.png'];
+const cacheName = prefix + 'v9';
+const files = ['index.html', 'portal.css', 'ambulancia.png', 'portal.js', 'manifest.webmanifest', 'icon-sanir-180.png', 'icon-sanir-192.png', 'icon-sanir-512.png'];
 const urls = files.map(file => new URL(file, root).href);
 
 self.addEventListener('install', event => {

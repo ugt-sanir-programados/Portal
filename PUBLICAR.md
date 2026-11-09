@@ -15,3 +15,5 @@ El formulario está conectado a la implementación de Google Apps Script desde e
 3. Pulsa **Enviar mensaje**. Google mostrará el resultado del script. Comprueba la recepción en ambos buzones y usa el botón Atrás del navegador para volver al portal.
 
 Si cambia la URL de la implementación, actualiza el atributo `action` de `contactForm` en `index.html` y vuelve a publicar.
+
+Los nuevos iconos se llaman `icon-sanir-180.png`, `icon-sanir-192.png` e `icon-sanir-512.png`. La carpeta `puesta-en-marcha` es para configurar el tablón en Google.
