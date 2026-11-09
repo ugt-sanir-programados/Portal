@@ -63,3 +63,5 @@ body{background:var(--portal-paper);background-image:radial-gradient(#f0d7cb 1px
 .tablon-aviso h2{margin:8px 0 12px;overflow-wrap:anywhere}
 .tablon-aviso p{white-space:pre-wrap;overflow-wrap:anywhere}
 .tablon-aviso img{display:block;max-width:100%;height:auto;margin:16px auto 0;border-radius:10px}
+
+#tablonFrame:not([hidden]){display:block;width:100%;height:clamp(460px,75vh,950px);border:1px solid #eadbe1;border-radius:18px;background:#fff8f2}

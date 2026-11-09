@@ -44,19 +44,45 @@
     }, 30000)};
   });
 
+  function finishBoard(){
+    clearTimeout(boardPending.timer);
+    boardPending.script.remove();
+    boardPending = null;
+  }
+
+  function showBoardFallback(){
+    finishBoard();
+    boardCards.replaceChildren();
+    boardStatus.textContent = 'Mostrando la vista compatible del tablón.';
+    boardFrame.src = boardFrame.dataset.url;
+    boardFrame.hidden = false;
+  }
+
   function loadBoard(){
-    if (boardPending) clearTimeout(boardPending.timer);
+    if (boardPending) finishBoard();
     const id = token();
     const url = new URL(boardFrame.dataset.url);
-    url.searchParams.set('portal_token', id);
+    url.searchParams.set('feed', id);
+    boardFrame.hidden = true;
     boardStatus.textContent = 'Cargando avisos…';
-    boardPending = {id, timer:setTimeout(() => {
-      boardPending = null;
-      boardCards.replaceChildren();
-      boardStatus.textContent = 'No se pudo cargar el tablón. Pulsa «Actualizar avisos» para volver a intentarlo.';
-    }, 25000)};
-    boardFrame.src = url.href;
+    const script = document.createElement('script');
+    script.src = url.href;
+    script.onerror = () => {
+      if (boardPending?.id === id) showBoardFallback();
+    };
+    boardPending = {id, script, timer:setTimeout(showBoardFallback, 10000)};
+    document.head.append(script);
   }
+
+  window.ugtBoardFeed = (id, notices) => {
+    if (boardPending?.id !== id) return;
+    if (!Array.isArray(notices)) {
+      showBoardFallback();
+      return;
+    }
+    finishBoard();
+    renderBoard(notices);
+  };
 
   function renderBoard(announcements){
     boardCards.replaceChildren();
@@ -100,15 +126,7 @@
       if (data.ok === true) form.reset();
       status.textContent = data.ok === true ? 'Mensaje enviado al buzón.' : 'No se pudo confirmar el envío. Tu mensaje sigue aquí.';
     }
-    if (data?.type === 'ugt-board' && boardPending && data.token === boardPending.id) {
-      clearTimeout(boardPending.timer);
-      boardPending = null;
-      if (Array.isArray(data.notices)) renderBoard(data.notices);
-      else {
-        boardCards.replaceChildren();
-        boardStatus.textContent = 'El tablón no está disponible en este momento.';
-      }
-    }
+
   });
   if (boardFrame) byId('tablonReload').onclick = loadBoard;
   function loadBoardOnEntry(){
