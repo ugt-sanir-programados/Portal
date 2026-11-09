@@ -28,7 +28,7 @@ main{font-family:'Manrope',system-ui,sans-serif}.hero,.pilot{font-family:system-
 <div id="replyField"><label for="replyEmail">Tu correo para responderte</label><input id="replyEmail" name="email" type="email" maxlength="254" required></div>
 <label for="message">Tu mensaje</label><textarea id="message" name="mensaje" required maxlength="4000" placeholder="Cuéntanos qué necesitas…"></textarea>
 <p class="little" id="contactNote">El formulario usa Google Apps Script para tramitar tu consulta. Evita incluir datos de pacientes o información sensible.</p>
-<button type="submit" class="btn" id="contactSubmit">Enviar mensaje</button><p class="draftstate" id="draftState" role="status"></p></form>
+<button type="submit" class="btn" id="contactSubmit">Enviar mensaje</button><p class="draftstate" id="draftState" role="status"></p><button type="submit" class="btn soft" id="contactDirect" hidden>Probar envío directo</button></form>
 <aside class="box"><div class="eyebrow">Al otro lado</div><h3>Personas, como tú.</h3><p id="contactAside">Usaremos el correo que indiques para responder a tu consulta.</p></aside></div></section>
 
 <section class="view" id="buscar" hidden><div class="pageintro"><div class="eyebrow">Búsqueda del portal</div><h1>¿Qué necesitas encontrar?</h1><p>Busca recursos y apartados. Para consultar el articulado, abre el buscador del convenio.</p></div><div id="searchPage"></div><p class="badgecount" id="count" role="status"></p><div class="searchresults" id="results"></div></section>

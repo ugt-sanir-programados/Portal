@@ -1,6 +1,6 @@
 const root = self.registration.scope;
 const prefix = 'ugt-sanir-portal:' + root + ':';
-const cacheName = prefix + 'v12';
+const cacheName = prefix + 'v13';
 const files = ['index.html', 'portal.css', 'ambulancia.png', 'portal.js', 'manifest.webmanifest', 'icon-sanir-180.png', 'icon-sanir-192.png', 'icon-sanir-512.png'];
 const urls = files.map(file => new URL(file, root).href);
 

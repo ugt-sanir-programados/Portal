@@ -4,6 +4,7 @@
   const form = byId('contactForm');
   const send = byId('contactSubmit');
   const status = byId('draftState');
+  const direct = byId('contactDirect');
   const boardStatus = byId('tablonEstado');
   const boardCards = byId('tablonAvisos');
   const boardFrame = byId('tablonFrame');
@@ -31,7 +32,13 @@
       }
       return;
     }
+    if (event.submitter === direct && direct) {
+      tokenInput.value = '';
+      form.target = '_self';
+      return;
+    }
     if (location.origin !== 'https://ugt-sanir-programados.github.io') return;
+    if (direct) direct.hidden = true;
     const id = token();
     tokenInput.value = id;
     form.target = mailFrame.name;
@@ -40,7 +47,8 @@
     mailPending = {id, timer:setTimeout(() => {
       mailPending = null;
       send.disabled = false;
-      status.textContent = 'No se pudo confirmar el envío. Revisa el buzón antes de volver a enviarlo.';
+      if (direct) direct.hidden = false;
+      status.textContent = 'Google no ha devuelto una confirmación. Revisa el buzón antes de volver a enviarlo. Puedes probar el envío directo.';
     }, 30000)};
   });
 
@@ -124,7 +132,7 @@
       mailPending = null;
       send.disabled = false;
       if (data.ok === true) form.reset();
-      status.textContent = data.ok === true ? 'Mensaje enviado al buzón.' : 'No se pudo confirmar el envío. Tu mensaje sigue aquí.';
+      status.textContent = data.ok === true ? 'Mensaje enviado al buzón.' : 'Google ha rechazado el envío. Tu mensaje sigue aquí.';
     }
 
   });
