@@ -55,3 +55,6 @@ body{background:var(--portal-paper);background-image:radial-gradient(#f0d7cb 1px
 @media(max-width:520px){.turno-carretera{flex-basis:min(80%,275px);margin:0 0 19px}}
 
 .et-table{overflow-x:auto;font-size:.83em;line-height:1.6;tab-size:4}
+
+.tablon-controls{margin:0 0 12px}
+.tablon-frame{display:block;width:100%;height:clamp(460px,75vh,950px);border:1px solid #eadbe1;border-radius:18px;background:#fff8f2}
